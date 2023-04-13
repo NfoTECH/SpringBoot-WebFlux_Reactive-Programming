@@ -38,4 +38,11 @@ public class CustomerDao {
                 .doOnNext(i -> System.out.println("Processing customer " + i + " on thread " + Thread.currentThread().getName()))
                 .map(i -> new Customer(i, "name" + i));
     }
+
+    public Flux<Customer> getCustomerList(){
+        return Flux.range(1, 15)
+                .delayElements(Duration.ofSeconds(1))
+                .doOnNext(i -> System.out.println("Processing customer " + i + " on thread " + Thread.currentThread().getName()))
+                .map(i -> new Customer(i, "name" + i));
+    }
 }
